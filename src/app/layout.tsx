@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
+
+import NavbarComponent from "@/components/NavbarComponent";
+import { CartProvider } from "@/app/cart/provider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,9 +18,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const theme = cookieStore.get("theme");
+
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html className={`${theme?.value}`} lang="en">
+      <body
+        className={`bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col ${inter.className}`}
+      >
+        <CartProvider>
+          <NavbarComponent />
+          {children}
+        </CartProvider>
+      </body>
     </html>
   );
 }
