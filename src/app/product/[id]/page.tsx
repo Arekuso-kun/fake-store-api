@@ -1,7 +1,8 @@
-"use client";
+// "use client";
 
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+// import { useContext } from "react";
+import Image from "next/image";
 import { Button, Card, Spinner } from "flowbite-react";
 
 import { SpinnerTheme } from "@/app/_themes/spinnerTheme";
@@ -9,15 +10,27 @@ import RatingComponent from "@/components/RatingComponent";
 import { IProduct } from "@/app/_types/types";
 import { buttonTheme } from "@/app/_themes/buttonTheme";
 import { CartContext } from "@/app/cart/provider";
-import Image from "next/image";
 
-const ProductPage = ({ params }: { params: { id: string } }) => {
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const { dispatch } = useContext(CartContext);
+export async function generateStaticParams() {
+  const response = await axios.get("https://fakestoreapi.com/products");
+  const products: IProduct[] = response.data;
+
+  return products.map((product) => ({
+    id: product.id.toString(),
+  }));
+}
+
+const ProductPage = async ({ params }: { params: { id: string } }) => {
+  const response = await axios.get(
+    `https://fakestoreapi.com/products/${params.id}`
+  );
+  const product: IProduct = await response.data;
+  // const { dispatch } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    if (product == null) return;
-    dispatch({ type: "ADD_TO_CART", payload: product });
+    // if (product == null) return;
+    // dispatch({ type: "ADD_TO_CART", payload: product });
+    // UPDATE CART
   };
 
   const capitalizeAndAddPeriod = (text: string): string => {
@@ -30,14 +43,14 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
       : `${capitalizedText}.`;
   };
 
-  useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${params.id}`)
-      .then((response) => {
-        const data = response.data;
-        setProduct(data);
-      });
-  }, [params.id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://fakestoreapi.com/products/${params.id}`)
+  //     .then((response) => {
+  //       const data = response.data;
+  //       setProduct(data);
+  //     });
+  // }, [params.id]);
 
   return (
     <>
@@ -84,7 +97,7 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
                     fullSized
                     theme={buttonTheme}
                     color="primary"
-                    onClick={handleAddToCart}
+                    // onClick={handleAddToCart}
                   >
                     Add to cart
                   </Button>
