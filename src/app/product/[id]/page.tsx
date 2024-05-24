@@ -9,6 +9,7 @@ import RatingComponent from "@/components/RatingComponent";
 import { IProduct } from "@/app/_types/types";
 import { buttonTheme } from "@/app/_themes/buttonTheme";
 import { CartContext } from "@/app/cart/provider";
+import Image from "next/image";
 
 const ProductPage = ({ params }: { params: { id: string } }) => {
   const [product, setProduct] = useState<IProduct | null>(null);
@@ -36,7 +37,7 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
         const data = response.data;
         setProduct(data);
       });
-  }, []);
+  }, [params.id]);
 
   return (
     <>
@@ -48,7 +49,7 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
             </h5>
             <div className="flex flex-row gap-4 items-stretch justify-between">
               <div className="w-96 bg-white p-3 rounded-3xl">
-                <img
+                <Image
                   className="h-96 w-full object-scale-down"
                   src={product.image}
                   alt={product.title}
