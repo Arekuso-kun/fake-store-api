@@ -2,6 +2,7 @@
 
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Button, Card } from "flowbite-react";
 
 import RatingComponent from "@/components/RatingComponent";
@@ -29,7 +30,7 @@ const Product = ({ product }: { product: IProduct }) => {
           className="w-full bg-white p-2 cursor-pointer"
           onClick={handleClickOnProduct}
         >
-          <img
+          <Image
             className="h-64 w-full object-scale-down"
             src={product.image}
             alt={product.title}

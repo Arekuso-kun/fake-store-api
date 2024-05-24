@@ -6,6 +6,7 @@ import { Spinner } from "flowbite-react";
 
 import Product from "@/components/Product";
 import { SpinnerTheme } from "@/app/_themes/spinnerTheme";
+import { IProduct } from "@/app/_types/types";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -21,8 +22,8 @@ export default function Home() {
     <>
       {products.length > 0 ? (
         <main className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 mx-24 my-4">
-          {products.map((product) => {
-            return <Product product={product} />;
+          {products.map((product: IProduct) => {
+            return <Product key={product.id} product={product} />;
           })}
         </main>
       ) : (

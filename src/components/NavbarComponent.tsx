@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Navbar, Button, DarkThemeToggle } from "flowbite-react";
 import { Cart } from "flowbite-react-icons/outline";
 
@@ -45,7 +46,7 @@ const NavbarComponent = () => {
   return (
     <Navbar fluid theme={navbarTheme}>
       <Navbar.Brand href="/">
-        <img
+        <Image
           src="/fakestoreapi.png"
           className="mr-3 h-6 sm:h-9"
           alt="Fake Store API Logo"
