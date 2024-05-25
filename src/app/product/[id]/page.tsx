@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button, Card, Spinner } from "flowbite-react";
 
 import { SpinnerTheme } from "@/app/_themes/spinnerTheme";
-import RatingComponent from "@/components/RatingComponent";
+import RatingComponent from "@/components/Rating";
 import { IProduct } from "@/app/_types/types";
 import { buttonTheme } from "@/app/_themes/buttonTheme";
 import { CartContext } from "@/app/cart/provider";

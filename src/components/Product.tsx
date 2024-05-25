@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button, Card } from "flowbite-react";
 
-import RatingComponent from "@/components/RatingComponent";
+import RatingComponent from "@/components/Rating";
 import { CartContext } from "@/app/cart/provider";
 import { buttonTheme } from "@/app/_themes/buttonTheme";
 import type { IProduct } from "@/app/_types/types";
