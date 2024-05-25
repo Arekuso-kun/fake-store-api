@@ -27,14 +27,18 @@ const Product = ({ product }: { product: IProduct }) => {
       className="overflow-hidden"
       renderImage={() => (
         <div
-          className="w-full bg-white p-2 cursor-pointer"
+          className="bg-white p-2 cursor-pointer"
           onClick={handleClickOnProduct}
         >
-          <Image
-            className="h-64 w-full object-scale-down"
-            src={product.image}
-            alt={product.title}
-          />
+          <div className="relative h-full min-h-64">
+            <Image
+              className="object-scale-down"
+              src={product.image}
+              alt={product.title}
+              fill
+              objectFit="contain"
+            />
+          </div>
         </div>
       )}
     >

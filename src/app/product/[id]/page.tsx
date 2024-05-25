@@ -48,12 +48,15 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
               {product.title}
             </h5>
             <div className="flex flex-row gap-4 items-stretch justify-between">
-              <div className="w-96 bg-white p-3 rounded-3xl">
-                <Image
-                  className="h-96 w-full object-scale-down"
-                  src={product.image}
-                  alt={product.title}
-                />
+              <div className="bg-white p-3 rounded-3xl">
+                <div className="relative h-96 w-96 ">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    objectFit="contain"
+                  />
+                </div>
               </div>
               <div>
                 <div className="mb-4 flex items-center">

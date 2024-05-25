@@ -53,11 +53,14 @@ const Cart = () => {
                         handleClickOnProduct(item.id);
                       }}
                     >
-                      <Image
-                        className="h-32 w-full object-scale-down"
-                        src={item.image}
-                        alt={item.title}
-                      />
+                      <div className="relative h-32 w-32">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          objectFit="contain"
+                        />
+                      </div>
                     </Table.Cell>
                     <Table.Cell>
                       <h5
