@@ -1,15 +1,15 @@
 "use client";
 
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import Image from "next/image";
 import { Button, Card, Spinner } from "flowbite-react";
 
 import { SpinnerTheme } from "@/app/_themes/spinnerTheme";
-import RatingComponent from "@/components/RatingComponent";
+import RatingComponent from "@/components/Rating";
 import { IProduct } from "@/app/_types/types";
 import { buttonTheme } from "@/app/_themes/buttonTheme";
 import { CartContext } from "@/app/cart/provider";
-import Image from "next/image";
 
 const ProductPageComponent = ({ productId }: { productId: string }) => {
   const [product, setProduct] = useState<IProduct | null>(null);

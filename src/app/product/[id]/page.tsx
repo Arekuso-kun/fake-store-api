@@ -6,11 +6,9 @@ export async function generateStaticParams() {
   const response = await axios.get("https://fakestoreapi.com/products");
   const products: IProduct[] = response.data;
 
-  // return products.map((product) => ({
-  //   id: product.id.toString(),
-  // }));
-
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+  return products.map((product) => ({
+    id: product.id.toString(),
+  }));
 }
 
 const ProductPage = ({ params }: { params: { id: string } }) => {

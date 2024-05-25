@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 // import { cookies } from "next/headers";
 
-import NavbarComponent from "@/components/NavbarComponent";
+import NavbarComponent from "@/components/Navbar";
 import { CartProvider } from "@/app/cart/provider";
 import "./globals.css";
 
