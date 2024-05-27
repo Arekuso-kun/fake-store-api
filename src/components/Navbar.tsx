@@ -4,16 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-<<<<<<< Updated upstream
-import { Navbar, Button, DarkThemeToggle } from "flowbite-react";
-import { Cart } from "flowbite-react-icons/outline";
-
-import { CartContext } from "@/app/cart/provider";
-import { buttonTheme } from "@/app/_themes/buttonTheme";
-import { navbarTheme } from "@/app/_themes/navbarTheme";
-
-const NavbarComponent = () => {
-=======
 
 import { CartContext } from "@/app/cart/provider";
 import { ICartItem } from "@/types";
@@ -56,7 +46,6 @@ const NavbarComponent = () => {
     />
   );
 
->>>>>>> Stashed changes
   const { cart, dispatch } = useContext(CartContext);
   const [totalCost, setTotalCost] = useState(0);
 
@@ -82,57 +71,14 @@ const NavbarComponent = () => {
   useEffect(() => {
     setTotalCost(
       cart.reduce(
-<<<<<<< Updated upstream
-        (accumulator, item) => accumulator + item.price * item.quantity,
-=======
         (accumulator: number, item: ICartItem) =>
           accumulator + item.price * item.quantity,
->>>>>>> Stashed changes
         0
       )
     );
   }, [cart]);
 
   return (
-<<<<<<< Updated upstream
-    <Navbar fluid theme={navbarTheme}>
-      <Navbar.Brand href="/">
-        <Image
-          src="/fakestoreapi.png"
-          className="mr-3 h-6 sm:h-9"
-          alt="Fake Store API Logo"
-          width={39.35}
-          height={36}
-        />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Fake Store
-        </span>
-      </Navbar.Brand>
-      <div className="flex md:order-2">
-        <DarkThemeToggle className="mr-3" />
-        <Button
-          className="max-md:mr-3"
-          theme={buttonTheme}
-          color="primary"
-          onClick={handleClickCart}
-        >
-          <span className="flex items-center justify-center">
-            <span className="mr-1">
-              {totalCost ? `${totalCost.toFixed(2)}€` : "Cart"}
-            </span>
-            <Cart />
-          </span>
-        </Button>
-        <Navbar.Toggle />
-      </div>
-      <Navbar.Collapse>
-        {navLinks.map((link) => (
-          <Navbar.Link key={link.title} href={link.href} active={link.active}>
-            {link.title}
-          </Navbar.Link>
-        ))}
-      </Navbar.Collapse>
-=======
     <Navbar maxWidth="2xl" position="sticky" isBordered>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -216,7 +162,6 @@ const NavbarComponent = () => {
           ))}
         </div>
       </NavbarMenu>
->>>>>>> Stashed changes
     </Navbar>
   );
 };

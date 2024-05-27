@@ -21,33 +21,9 @@ const ProductComponent = ({ product }: { product: IProduct }) => {
   };
 
   return (
-<<<<<<< Updated upstream
-    <Card
-      className="overflow-hidden"
-      renderImage={() => (
-        <div
-          className="bg-white p-2 cursor-pointer"
-          onClick={handleClickOnProduct}
-        >
-          <div className="relative h-full min-h-64">
-            <Image
-              className="object-scale-down"
-              src={product.image}
-              alt={product.title}
-              fill
-              objectFit="contain"
-            />
-          </div>
-        </div>
-      )}
-    >
-      <h5
-        className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-2 h-[3.5rem] cursor-pointer hover:underline"
-=======
     <Card className="overflow-hidden">
       <CardHeader
         className="bg-white cursor-pointer"
->>>>>>> Stashed changes
         onClick={handleClickOnProduct}
       >
         <Image

@@ -4,14 +4,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Button, Card, CircularProgress, Image } from "@nextui-org/react";
 
-<<<<<<< Updated upstream
-import { SpinnerTheme } from "@/app/_themes/spinnerTheme";
 import RatingComponent from "@/components/Rating";
-import { IProduct } from "@/app/_types/types";
-import { buttonTheme } from "@/app/_themes/buttonTheme";
-=======
-import RatingComponent from "@/components/Rating";
->>>>>>> Stashed changes
 import { CartContext } from "@/app/cart/provider";
 import { IProduct } from "@/types";
 
@@ -46,27 +39,6 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
   return (
     <>
       {product != null ? (
-<<<<<<< Updated upstream
-        <main className="grow flex flex-col items-center my-4">
-          <div className="max-w-7xl w-full">
-            <h5 className="mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-              {product.title}
-            </h5>
-            <div className="flex flex-row gap-4 items-stretch justify-between">
-              <div className="bg-white p-3 rounded-3xl">
-                <div className="relative h-96 w-96 ">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    fill
-                    objectFit="contain"
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="mb-4 flex items-center">
-                  <RatingComponent rating={Math.round(product.rating.rate)} />
-=======
         <div>
           <h5 className="mb-4 text-xl font-semibold">{product.title}</h5>
           <div className="flex flex-row gap-4 items-stretch justify-between">
@@ -76,7 +48,6 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
               alt={product.title}
               removeWrapper
             />
->>>>>>> Stashed changes
 
             <div className="w-2/5">
               <div className="mb-4 flex items-center">

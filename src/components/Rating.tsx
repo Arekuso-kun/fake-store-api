@@ -1,21 +1,9 @@
 "use client";
 
-<<<<<<< Updated upstream
-import { Rating } from "flowbite-react";
-
-=======
->>>>>>> Stashed changes
 const RatingComponent = ({ rating }: { rating: number }) => {
   const stars = Array.from({ length: 5 }, (_, index) => index < rating);
 
   return (
-<<<<<<< Updated upstream
-    <Rating>
-      {stars.map((filled, index) => (
-        <Rating.Star key={index} filled={filled} />
-      ))}
-    </Rating>
-=======
     <div className="flex items-center">
       {stars.map((filled, index) => (
         <svg
@@ -32,7 +20,6 @@ const RatingComponent = ({ rating }: { rating: number }) => {
         </svg>
       ))}
     </div>
->>>>>>> Stashed changes
   );
 };
 

@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-<<<<<<< Updated upstream
-=======
 import { Link } from "@nextui-org/react";
->>>>>>> Stashed changes
 
 import NavbarComponent from "@/components/Navbar";
 import { CartProvider } from "@/app/cart/provider";
@@ -31,15 +28,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-<<<<<<< Updated upstream
-      <body
-        className={`bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col ${inter.className}`}
-      >
-        <CartProvider>
-          <NavbarComponent />
-          {children}
-        </CartProvider>
-=======
       <body className={`bg-background min-h-screen ${inter.className}`}>
         <Providers
           themeProps={{ attribute: "class", defaultTheme: "dark", children }}
@@ -64,7 +52,6 @@ export default function RootLayout({
             </CartProvider>
           </div>
         </Providers>
->>>>>>> Stashed changes
       </body>
     </html>
   );
