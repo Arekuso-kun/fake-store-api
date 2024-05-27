@@ -1,36 +1,40 @@
 import type { Config } from "tailwindcss";
-import flowbite from "flowbite-react/tailwind";
+import { nextui } from "@nextui-org/react";
 
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/flowbite-react/lib/**/*.js",
-    flowbite.content(),
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          100: "#E3D1E4",
-          200: "#D0A3CC",
-          300: "#BD76B4",
-          400: "#AA488D",
-          500: "#802C6E",
-          600: "#70265E",
-          700: "#60204E",
-          800: "#50193E",
-          900: "#40122E",
+          50: "#fdf6fc",
+          100: "#fbecfa",
+          200: "#f7d7f4",
+          300: "#f0b7e8",
+          400: "#e58dd6",
+          500: "#d560c2",
+          600: "#b940a4",
+          700: "#993284",
+          800: "#802c6e",
+          900: "#672858",
+          950: "#430f37",
+          foreground: "#fff",
+          background: "#000",
+          DEFAULT: "#802c6e",
         },
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
-  plugins: [require("flowbite/plugin"), flowbite.plugin()],
+  darkMode: "class",
+  plugins: [
+    nextui({
+      addCommonColors: true,
+    }),
+  ],
 };
 export default config;

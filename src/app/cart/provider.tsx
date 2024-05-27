@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useReducer,
 } from "react";
-import { TCartState, TCartAction } from "@/app/_types/types";
+import { TCartState, TCartAction } from "@/types";
 
 export const CartContext = createContext<{
   cart: TCartState;

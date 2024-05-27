@@ -2,14 +2,18 @@
 
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Button, Card, Spinner } from "flowbite-react";
+import { Button, Card, CircularProgress, Image } from "@nextui-org/react";
 
+<<<<<<< Updated upstream
 import { SpinnerTheme } from "@/app/_themes/spinnerTheme";
 import RatingComponent from "@/components/Rating";
 import { IProduct } from "@/app/_types/types";
 import { buttonTheme } from "@/app/_themes/buttonTheme";
+=======
+import RatingComponent from "@/components/Rating";
+>>>>>>> Stashed changes
 import { CartContext } from "@/app/cart/provider";
-import Image from "next/image";
+import { IProduct } from "@/types";
 
 const ProductPage = ({ params }: { params: { id: string } }) => {
   const [product, setProduct] = useState<IProduct | null>(null);
@@ -42,6 +46,7 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
   return (
     <>
       {product != null ? (
+<<<<<<< Updated upstream
         <main className="grow flex flex-col items-center my-4">
           <div className="max-w-7xl w-full">
             <h5 className="mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -61,50 +66,54 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
               <div>
                 <div className="mb-4 flex items-center">
                   <RatingComponent rating={Math.round(product.rating.rate)} />
+=======
+        <div>
+          <h5 className="mb-4 text-xl font-semibold">{product.title}</h5>
+          <div className="flex flex-row gap-4 items-stretch justify-between">
+            <Image
+              className="bg-white h-1/3 w-1/3 p-3 object-contain"
+              src={product.image}
+              alt={product.title}
+              removeWrapper
+            />
+>>>>>>> Stashed changes
 
-                  <span className="ml-3 mr-1 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-semibold text-primary-800 dark:bg-primary-200 dark:text-primary-800">
-                    {product.rating.rate}
-                  </span>
+            <div className="w-2/5">
+              <div className="mb-4 flex items-center">
+                <RatingComponent rating={Math.round(product.rating.rate)} />
 
-                  <span className="mx-1.5 h-1 w-1 rounded-full bg-gray-500 dark:bg-gray-400" />
-                  <a
-                    href="#"
-                    className="ml-1 text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
-                  >
-                    {product.rating.count} reviews
-                  </a>
-                </div>
-                <div className="text-gray-600 dark:text-gray-400 w-[36rem]">
-                  {capitalizeAndAddPeriod(product.description)}
-                </div>
+                <span className="bg-primary-100 text-primary-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800 ms-3 mr-1">
+                  {product.rating.rate}
+                </span>
+
+                <span className="mx-1.5 h-1 w-1 rounded-full bg-gray-500 dark:bg-gray-400" />
+                <a
+                  href="#"
+                  className="ml-1 text-sm font-medium underline hover:no-underline"
+                >
+                  {product.rating.count} reviews
+                </a>
               </div>
-              <Card className="grow h-40">
-                <div className="grow flex flex-col justify-between">
-                  <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                    {product.price.toFixed(2)}€
-                  </span>
-                  <Button
-                    fullSized
-                    theme={buttonTheme}
-                    color="primary"
-                    onClick={handleAddToCart}
-                  >
-                    Add to cart
-                  </Button>
-                </div>
-              </Card>
+              <div className="text-gray-600 dark:text-gray-400">
+                {capitalizeAndAddPeriod(product.description)}
+              </div>
             </div>
+            <Card className="grow h-40 p-6">
+              <div className="grow flex flex-col justify-between">
+                <span className="text-3xl font-bold">
+                  {product.price.toFixed(2)}€
+                </span>
+                <Button fullWidth color="primary" onClick={handleAddToCart}>
+                  Add to cart
+                </Button>
+              </div>
+            </Card>
           </div>
-        </main>
+        </div>
       ) : (
-        <main className="grow flex items-center justify-center">
-          <Spinner
-            theme={SpinnerTheme}
-            color="primary"
-            size="xl"
-            aria-label="Loading product..."
-          />
-        </main>
+        <div className="flex justify-center">
+          <CircularProgress aria-label="Loading..." />
+        </div>
       )}
     </>
   );

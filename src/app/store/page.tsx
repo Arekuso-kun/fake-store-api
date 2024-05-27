@@ -2,11 +2,10 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Spinner } from "flowbite-react";
+import { CircularProgress } from "@nextui-org/react";
 
 import Product from "@/components/Product";
-import { SpinnerTheme } from "@/app/_themes/spinnerTheme";
-import { IProduct } from "@/app/_types/types";
+import { IProduct } from "@/types";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -21,20 +20,15 @@ export default function Home() {
   return (
     <>
       {products.length > 0 ? (
-        <main className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 mx-24 my-4">
+        <div className="grid grid-cols-[repeat(auto-fill,_minmax(280px,_1fr))] gap-4">
           {products.map((product: IProduct) => {
             return <Product key={product.id} product={product} />;
           })}
-        </main>
+        </div>
       ) : (
-        <main className="grow flex items-center justify-center">
-          <Spinner
-            theme={SpinnerTheme}
-            color="primary"
-            size="xl"
-            aria-label="Loading product..."
-          />
-        </main>
+        <div className="flex justify-center">
+          <CircularProgress aria-label="Loading..." />
+        </div>
       )}
     </>
   );

@@ -2,12 +2,20 @@
 
 import React, { useContext } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { Button, Table } from "flowbite-react";
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  getKeyValue,
+  Button,
+  Image,
+} from "@nextui-org/react";
 
 import { CartContext } from "@/app/cart/provider";
-import { buttonTheme } from "@/app/_themes/buttonTheme";
-import { ICartItem } from "@/app/_types/types";
+import { ICartItem } from "@/types";
 
 const Cart = () => {
   const router = useRouter();
@@ -28,31 +36,61 @@ const Cart = () => {
   return (
     <>
       {cart.length > 0 ? (
-        <main className="flex flex-col items-center mt-4">
-          <div className="max-w-7xl w-full">
-            <Table className="">
-              <Table.Head>
-                <Table.HeadCell></Table.HeadCell>
-                <Table.HeadCell>Product name</Table.HeadCell>
-                <Table.HeadCell>Quantity</Table.HeadCell>
-                <Table.HeadCell>Price per unit</Table.HeadCell>
-                <Table.HeadCell>Total Price</Table.HeadCell>
-                <Table.HeadCell>
-                  <span className="sr-only">Edit</span>
-                </Table.HeadCell>
-              </Table.Head>
-              <Table.Body className="divide-y">
-                {cart.map((item: ICartItem) => (
-                  <Table.Row
-                    key={item.id}
-                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
+        <div className="flex flex-col items-center mt-4">
+          <Table
+            bottomContent={
+              <>
+                <div className="font-medium text-lg">
+                  Total:{" "}
+                  {cart
+                    .reduce(
+                      (accumulator: number, item: ICartItem) =>
+                        accumulator + item.price * item.quantity,
+                      0
+                    )
+                    .toFixed(2)}
+                  €
+                </div>
+                <Button color="primary">Place order</Button>
+              </>
+            }
+          >
+            <TableHeader>
+              <TableColumn>
+                <span className="sr-only">Image</span>
+              </TableColumn>
+              <TableColumn>Product name</TableColumn>
+              <TableColumn>Quantity</TableColumn>
+              <TableColumn>Price per unit</TableColumn>
+              <TableColumn>Total Price</TableColumn>
+              <TableColumn align="center">
+                <span className="sr-only">Edit</span>
+              </TableColumn>
+            </TableHeader>
+            <TableBody>
+              {cart.map((item: ICartItem) => (
+                <TableRow key={item.id}>
+                  <TableCell
+                    className="cursor-pointer"
+                    onClick={() => {
+                      handleClickOnProduct(item.id);
+                    }}
                   >
-                    <Table.Cell
-                      className="p-2 bg-white cursor-pointer"
+                    <Image
+                      className="bg-white h-32 w-full min-w-16 p-2 object-contain"
+                      src={item.image}
+                      alt={item.title}
+                      removeWrapper
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <h5
+                      className="text-lg font-semibold cursor-pointer hover:underline"
                       onClick={() => {
                         handleClickOnProduct(item.id);
                       }}
                     >
+<<<<<<< Updated upstream
                       <div className="relative h-32 w-32">
                         <Image
                           src={item.image}
@@ -114,25 +152,43 @@ const Cart = () => {
                     €
                   </Table.Cell>
                   <Table.Cell className="flex justify-center">
+=======
+                      {item.title}
+                    </h5>
+                  </TableCell>
+                  <TableCell>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) =>
+                        handleUpdateQuantity(item.id, Number(e.target.value))
+                      }
+                      className="text-sm rounded-lg block w-16 p-2.5"
+                    />
+                  </TableCell>
+                  <TableCell>{`${item.price.toFixed(2)}€`}</TableCell>
+                  <TableCell>{`${(item.price * item.quantity).toFixed(
+                    2
+                  )}€`}</TableCell>
+                  <TableCell>
+>>>>>>> Stashed changes
                     <Button
-                      className="whitespace-nowrap"
-                      theme={buttonTheme}
-                      color="primary"
+                      color="danger"
+                      variant="bordered"
+                      onClick={() => handleRemove(item.id)}
                     >
-                      Place order
+                      Remove
                     </Button>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            </Table>
-          </div>
-        </main>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       ) : (
-        <main className="grow flex items-center justify-center">
-          <span className="text-2xl font-semibold text-gray-900 dark:text-white">
-            Your cart is empty
-          </span>
-        </main>
+        <div className="flex justify-center">
+          <span className="text-2xl font-semibold">Your cart is empty</span>
+        </div>
       )}
     </>
   );
